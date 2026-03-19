@@ -1,4 +1,4 @@
-# 🚀 Recreating StackEval – Real-World LLM Benchmark
+# Recreating StackEval – Real-World LLM Benchmark
 
 ## 📌 Project Overview
 This project aims to recreate a simplified version of the StackEval benchmark developed by Prosus AI researchers.
@@ -103,14 +103,14 @@ Select at least four LLM models from different categories:
 
 ---
 
-## ⚖️ Ethical Considerations
+## Ethical Considerations
 - Benchmarks influence which models are adopted  
 - Human evaluation introduces subjectivity  
 - Risk of models being optimized for benchmarks instead of real capability  
 
 ---
 
-## 📊 Expected Outcome
+## Expected Outcome
 At the end of the project, the results should include:
 - A dataset of questions and model answers  
 - Human evaluation scores  
@@ -119,7 +119,7 @@ At the end of the project, the results should include:
 
 ---
 
-## 🧩 Skills Developed
+## Skills Developed
 This project helps develop:
 - LLM evaluation skills  
 - Experimental design  
@@ -128,7 +128,7 @@ This project helps develop:
 
 ---
 
-## 🌍 Why This Project Matters
+## Why This Project Matters
 This project demonstrates that real-world benchmarks provide more meaningful insights than generic academic benchmarks.
 
 It helps better understand how LLMs behave in practical developer scenarios.
