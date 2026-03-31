@@ -1,0 +1,63 @@
+Question:
+Why do I get a NullPointerException in Java?
+
+Model:
+gpt-5.4
+
+Answer:
+A `NullPointerException` in Java happens when your code tries to use a variable that currently holds `null` as if it were a real object.
+
+### Common causes
+You get it when you do things like:
+
+- Call a method on `null`
+- Access a field on `null`
+- Use an array that is `null`
+- Auto-unbox a `null` wrapper type like `Integer`
+
+### Example
+```java
+String name = null;
+System.out.println(name.length()); // NullPointerException
+```
+
+Here, `name` doesn’t refer to any actual `String` object, so calling `length()` fails.
+
+### Another example
+```java
+Integer x = null;
+int y = x; // NullPointerException due to unboxing
+```
+
+### Why it happens
+In Java, object variables store references. If the reference is `null`, it means “points to nothing.” Trying to use “nothing” like an object causes the exception.
+
+### How to fix it
+- Make sure the variable is initialized before use
+- Check for `null` before accessing it
+- Trace where the value should have been assigned
+
+Example fix:
+```java
+String name = null;
+
+if (name != null) {
+    System.out.println(name.length());
+}
+```
+
+Or initialize it:
+```java
+String name = "";
+System.out.println(name.length());
+```
+
+### How to debug
+Look at the stack trace. It usually tells you:
+- the exact line where the exception happened
+- the method call path that led there
+
+If you want, I can also show:
+- how to read a `NullPointerException` stack trace
+- the most common real-world causes
+- how to avoid it with `Optional`, null checks, and better design

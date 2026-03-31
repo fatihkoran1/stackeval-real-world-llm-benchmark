@@ -1,0 +1,30 @@
+[
+    {
+        "label": "Frontier proprietary model",
+        "provider": "openai",
+        "model": "gpt-5.4",
+        "question": "Write a function in Python that removes duplicates from a list.",
+        "answer": "```python\ndef remove_duplicates(items):\n    return list(dict.fromkeys(items))\n```\n\nExample:\n```python\nnums = [1, 2, 2, 3, 1, 4]\nprint(remove_duplicates(nums))  # [1, 2, 3, 4]\n```\n\nThis preserves the original order while removing duplicates."
+    },
+    {
+        "label": "Frontier competitor",
+        "provider": "anthropic",
+        "model": "claude-sonnet-4-6",
+        "question": "Write a function in Python that removes duplicates from a list.",
+        "answer": "## Remove Duplicates from a List\n\nHere are several approaches to remove duplicates from a list in Python:\n\n### 1. Using a Set (Simple & Fast)\n```python\ndef remove_duplicates(lst):\n    \"\"\"Remove duplicates while losing original order.\"\"\"\n    return list(set(lst))\n```\n\n### 2. Preserving Order (Using `dict.fromkeys()`)\n```python\ndef remove_duplicates(lst):\n    \"\"\"Remove duplicates while preserving original order.\"\"\"\n    return list(dict.fromkeys(lst))\n```\n\n### 3. Preserving Order (Using a Seen Set)\n```python\ndef remove_duplicates(lst):\n    \"\"\"Remove duplicates while preserving original order.\"\"\"\n    seen = set()\n    result = []\n    for item in lst:\n        if item not in seen:\n            seen.add(item)\n            result.append(item)\n    return result\n```\n\n### 4. Using List Comprehension\n```python\ndef remove_duplicates(lst):\n    \"\"\"Remove duplicates while preserving original order.\"\"\"\n    seen = set()\n    return [seen.add(item) or item for item in lst if item not in seen]\n```\n\n---\n\n### Example Usage\n```python\nnumbers = [1, 2, 3, 2, 4, 3, 5, 1]\nwords = [\"apple\", \"banana\", \"apple\", \"cherry\", \"banana\"]\nmixed = [1, \"a\", 2, \"b\", 1, \"a\"]\n\nprint(remove_duplicates(numbers))  # [1, 2, 3, 4, 5]\nprint(remove_duplicates(words))    # ['apple', 'banana', 'cherry']\nprint(remove_duplicates(mixed))    # [1, 'a', 2, 'b']\n```\n\n---\n\n### Comparison\n\n| Method | Preserves Order | Time Complexity | Notes |\n|---|---|---|---|\n| `set()` | ❌ No | O(n) | Simplest, fastest |\n| `dict.fromkeys()` | ✅ Yes | O(n) | Clean & Pythonic |\n| Seen Set | ✅ Yes | O(n) | Most explicit |\n| List Comprehension | ✅ Yes | O(n) | Compact but less readable |\n\n### ✅ Recommended Approach\nUse **`dict.fromkeys()`** — it's clean, Pythonic, preserves order, and works efficiently in Python 3.7+:\n\n```python\ndef remove_duplicates(lst):\n    return list(dict.fromkeys(lst))\n```"
+    },
+    {
+        "label": "Open-source model",
+        "provider": "openrouter",
+        "model": "meta-llama/llama-4-maverick",
+        "question": "Write a function in Python that removes duplicates from a list.",
+        "answer": "### Removing Duplicates from a List in Python\n#### Function Implementation\n\n```python\ndef remove_duplicates(input_list):\n    \"\"\"\n    Removes duplicates from a given list while preserving the original order.\n\n    Args:\n        input_list (list): The list from which to remove duplicates.\n\n    Returns:\n        list: A new list with duplicates removed.\n    \"\"\"\n    seen = set()\n    output_list = [x for x in input_list if not (x in seen or seen.add(x))]\n    return output_list\n\n# Example usage\nif __name__ == \"__main__\":\n    my_list = [1, 2, 3, 2, 4, 5, 5, 6]\n    print(\"Original List:\", my_list)\n    print(\"List without duplicates:\", remove_duplicates(my_list))\n```\n\n#### Explanation\n\n*   The `remove_duplicates` function takes an input list and uses a set (`seen`) to keep track of elements it has encountered.\n*   It utilizes a list comprehension to iterate over the input list. For each element, it checks if the element is already in the `seen` set. If not, it adds the element to the `seen` set and includes it in the output list.\n*   The function returns the output list, which contains the elements from the original list but without duplicates.\n*   The example usage demonstrates how to call the `remove_duplicates` function with a sample list and print the results.\n\n#### Alternative Implementation Using Built-in Functions\n\nIf you prefer a more concise solution, you can use a combination of `dict.fromkeys()` (available in Python 3.7 and later) to remove duplicates while preserving order, or convert the list to a set and then back to a list (though this may not preserve the original order):\n\n```python\ndef remove_duplicates(input_list):\n    return list(dict.fromkeys(input_list))\n\n# or, for an unordered result\ndef remove_duplicates_unordered(input_list):\n    return list(set(input_list))\n```"
+    },
+    {
+        "label": "Budget / lightweight model",
+        "provider": "openai",
+        "model": "gpt-5.4-mini",
+        "question": "Write a function in Python that removes duplicates from a list.",
+        "answer": "Here’s a simple Python function that removes duplicates from a list while preserving the original order:\n\n```python\ndef remove_duplicates(lst):\n    seen = set()\n    result = []\n    for item in lst:\n        if item not in seen:\n            seen.add(item)\n            result.append(item)\n    return result\n```\n\nExample:\n\n```python\nnumbers = [1, 2, 2, 3, 4, 4, 5]\nprint(remove_duplicates(numbers))\n# Output: [1, 2, 3, 4, 5]\n```\n\nIf you want, I can also show a shorter version or one that works for unhashable items like dictionaries."
+    }
+]
