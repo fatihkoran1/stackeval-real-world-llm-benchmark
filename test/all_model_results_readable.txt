@@ -1,23 +1,31 @@
 Question:
-Write a function in Python that removes duplicates from a list.
+Write a function in Java that removes duplicates from a list.
 
 ===== Frontier proprietary model =====
 Provider: openai
 Model: gpt-5.4
 
 Answer:
-```python
-def remove_duplicates(items):
-    return list(dict.fromkeys(items))
+```java
+import java.util.*;
+
+public class Main {
+    public static <T> List<T> removeDuplicates(List<T> list) {
+        return new ArrayList<>(new LinkedHashSet<>(list));
+    }
+
+    public static void main(String[] args) {
+        List<String> items = Arrays.asList("apple", "banana", "apple", "orange", "banana");
+        List<String> uniqueItems = removeDuplicates(items);
+        System.out.println(uniqueItems); // [apple, banana, orange]
+    }
+}
 ```
 
-Example:
-```python
-nums = [1, 2, 2, 3, 1, 4]
-print(remove_duplicates(nums))  # [1, 2, 3, 4]
-```
-
-This preserves the original order while removing duplicates.
+This version:
+- Removes duplicates
+- Preserves the original order
+- Works with any type using generics
 
 ======================================================================
 
@@ -26,76 +34,133 @@ Provider: anthropic
 Model: claude-sonnet-4-6
 
 Answer:
-## Remove Duplicates from a List
+## Remove Duplicates from a List in Java
 
-Here are several approaches to remove duplicates from a list in Python:
+Here are several approaches to remove duplicates from a list in Java:
 
-### 1. Using a Set (Simple & Fast)
-```python
-def remove_duplicates(lst):
-    """Remove duplicates while losing original order."""
-    return list(set(lst))
-```
+### Approach 1: Using LinkedHashSet (Preserves Order)
 
-### 2. Preserving Order (Using `dict.fromkeys()`)
-```python
-def remove_duplicates(lst):
-    """Remove duplicates while preserving original order."""
-    return list(dict.fromkeys(lst))
-```
+```java
+import java.util.*;
 
-### 3. Preserving Order (Using a Seen Set)
-```python
-def remove_duplicates(lst):
-    """Remove duplicates while preserving original order."""
-    seen = set()
-    result = []
-    for item in lst:
-        if item not in seen:
-            seen.add(item)
-            result.append(item)
-    return result
-```
+public class RemoveDuplicates {
 
-### 4. Using List Comprehension
-```python
-def remove_duplicates(lst):
-    """Remove duplicates while preserving original order."""
-    seen = set()
-    return [seen.add(item) or item for item in lst if item not in seen]
+    public static <T> List<T> removeDuplicates(List<T> list) {
+        if (list == null || list.isEmpty()) {
+            return new ArrayList<>();
+        }
+        return new ArrayList<>(new LinkedHashSet<>(list));
+    }
+
+    public static void main(String[] args) {
+        List<Integer> numbers = Arrays.asList(1, 2, 3, 2, 4, 3, 5, 1);
+        System.out.println("Original: " + numbers);
+        System.out.println("Without duplicates: " + removeDuplicates(numbers));
+        // Output: Without duplicates: [1, 2, 3, 4, 5]
+    }
+}
 ```
 
 ---
 
-### Example Usage
-```python
-numbers = [1, 2, 3, 2, 4, 3, 5, 1]
-words = ["apple", "banana", "apple", "cherry", "banana"]
-mixed = [1, "a", 2, "b", 1, "a"]
+### Approach 2: Using Java Streams (Modern Approach)
 
-print(remove_duplicates(numbers))  # [1, 2, 3, 4, 5]
-print(remove_duplicates(words))    # ['apple', 'banana', 'cherry']
-print(remove_duplicates(mixed))    # [1, 'a', 2, 'b']
+```java
+import java.util.*;
+import java.util.stream.*;
+
+public class RemoveDuplicates {
+
+    public static <T> List<T> removeDuplicates(List<T> list) {
+        if (list == null || list.isEmpty()) {
+            return new ArrayList<>();
+        }
+        return list.stream()
+                   .distinct()
+                   .collect(Collectors.toList());
+    }
+
+    public static void main(String[] args) {
+        List<String> words = Arrays.asList("apple", "banana", "apple", "cherry", "banana");
+        System.out.println("Original: " + words);
+        System.out.println("Without duplicates: " + removeDuplicates(words));
+        // Output: Without duplicates: [apple, banana, cherry]
+    }
+}
 ```
 
 ---
 
-### Comparison
+### Approach 3: Manual Iteration (No Extra Libraries)
 
-| Method | Preserves Order | Time Complexity | Notes |
-|---|---|---|---|
-| `set()` | ❌ No | O(n) | Simplest, fastest |
-| `dict.fromkeys()` | ✅ Yes | O(n) | Clean & Pythonic |
-| Seen Set | ✅ Yes | O(n) | Most explicit |
-| List Comprehension | ✅ Yes | O(n) | Compact but less readable |
+```java
+import java.util.*;
 
-### ✅ Recommended Approach
-Use **`dict.fromkeys()`** — it's clean, Pythonic, preserves order, and works efficiently in Python 3.7+:
+public class RemoveDuplicates {
 
-```python
-def remove_duplicates(lst):
-    return list(dict.fromkeys(lst))
+    public static <T> List<T> removeDuplicates(List<T> list) {
+        if (list == null || list.isEmpty()) {
+            return new ArrayList<>();
+        }
+
+        List<T> result = new ArrayList<>();
+        for (T element : list) {
+            if (!result.contains(element)) {
+                result.add(element);
+            }
+        }
+        return result;
+    }
+
+    public static void main(String[] args) {
+        List<Integer> numbers = Arrays.asList(5, 3, 1, 3, 5, 7, 9, 7);
+        System.out.println("Original: " + numbers);
+        System.out.println("Without duplicates: " + removeDuplicates(numbers));
+        // Output: Without duplicates: [5, 3, 1, 7, 9]
+    }
+}
 ```
+
+---
+
+### Approach 4: In-Place Removal (Modifies Original List)
+
+```java
+import java.util.*;
+
+public class RemoveDuplicates {
+
+    public static <T> void removeDuplicatesInPlace(List<T> list) {
+        if (list == null || list.isEmpty()) {
+            return;
+        }
+
+        Set<T> seen = new HashSet<>();
+        Iterator<T> iterator = list.iterator();
+
+        while (iterator.hasNext()) {
+            T element = iterator.next();
+            if (!seen.add(element)) {  // add() returns false if element already exists
+                iterator.remove();
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        List<Integer> numbers = new ArrayList<>(Arrays.asList(1, 2, 2, 3, 4, 4, 5));
+        System.out.println("Before: " + numbers);
+        removeDuplicatesInPlace(numbers);
+        System.out.println("After: " + numbers);
+        // Output: After: [1, 2, 3, 4, 5]
+    }
+}
+```
+
+---
+
+## Comparison
+
+| Approach | Time
 
 ======================================================================
 
@@ -104,50 +169,78 @@ Provider: openrouter
 Model: meta-llama/llama-4-maverick
 
 Answer:
-### Removing Duplicates from a List in Python
-#### Function Implementation
+### Remove Duplicates from a List in Java
+#### Using Java 8 Stream API
 
-```python
-def remove_duplicates(input_list):
-    """
-    Removes duplicates from a given list while preserving the original order.
+Here's an example of a function that uses Java 8's Stream API to remove duplicates from a list.
 
-    Args:
-        input_list (list): The list from which to remove duplicates.
+```java
+import java.util.List;
+import java.util.stream.Collectors;
 
-    Returns:
-        list: A new list with duplicates removed.
-    """
-    seen = set()
-    output_list = [x for x in input_list if not (x in seen or seen.add(x))]
-    return output_list
+public class Main {
 
-# Example usage
-if __name__ == "__main__":
-    my_list = [1, 2, 3, 2, 4, 5, 5, 6]
-    print("Original List:", my_list)
-    print("List without duplicates:", remove_duplicates(my_list))
+    /**
+     * Removes duplicates from a list.
+     *
+     * @param list the input list
+     * @return a new list with duplicates removed
+     */
+    public static <T> List<T> removeDuplicates(List<T> list) {
+        return list.stream()
+                .distinct()
+                .collect(Collectors.toList());
+    }
+
+    public static void main(String[] args) {
+        List<Integer> numbers = List.of(1, 2, 2, 3, 4, 4, 5, 6, 6);
+        List<Integer> uniqueNumbers = removeDuplicates(numbers);
+        System.out.println("Unique numbers: " + uniqueNumbers);
+    }
+}
 ```
 
-#### Explanation
+#### Using HashSet
 
-*   The `remove_duplicates` function takes an input list and uses a set (`seen`) to keep track of elements it has encountered.
-*   It utilizes a list comprehension to iterate over the input list. For each element, it checks if the element is already in the `seen` set. If not, it adds the element to the `seen` set and includes it in the output list.
-*   The function returns the output list, which contains the elements from the original list but without duplicates.
-*   The example usage demonstrates how to call the `remove_duplicates` function with a sample list and print the results.
+If you prefer not to use Java 8's Stream API, you can achieve the same result by using a `HashSet` to store unique elements.
 
-#### Alternative Implementation Using Built-in Functions
+```java
+import java.util.*;
 
-If you prefer a more concise solution, you can use a combination of `dict.fromkeys()` (available in Python 3.7 and later) to remove duplicates while preserving order, or convert the list to a set and then back to a list (though this may not preserve the original order):
+public class Main {
 
-```python
-def remove_duplicates(input_list):
-    return list(dict.fromkeys(input_list))
+    /**
+     * Removes duplicates from a list.
+     *
+     * @param list the input list
+     * @return a new list with duplicates removed
+     */
+    public static <T> List<T> removeDuplicates(List<T> list) {
+        Set<T> set = new HashSet<>(list);
+        return new ArrayList<>(set);
+    }
 
-# or, for an unordered result
-def remove_duplicates_unordered(input_list):
-    return list(set(input_list))
+    public static void main(String[] args) {
+        List<Integer> numbers = List.of(1, 2, 2, 3, 4, 4, 5, 6, 6);
+        List<Integer> uniqueNumbers = removeDuplicates(numbers);
+        System.out.println("Unique numbers: " + uniqueNumbers);
+    }
+}
 ```
+
+**Note**: Using a `HashSet` does not preserve the original order of the list. If you need to preserve the order, you can use a `LinkedHashSet` instead.
+
+```java
+public static <T> List<T> removeDuplicates(List<T> list) {
+    Set<T> set = new LinkedHashSet<>(list);
+    return new ArrayList<>(set);
+}
+```
+
+### Choosing the Right Approach
+
+* Use the Stream API approach when you need to perform additional operations on the list, such as filtering or mapping, as it provides a more functional programming style.
+* Use the `HashSet` or `LinkedHashSet` approach when you need a straightforward and efficient way to remove duplicates, especially for large lists.
 
 ======================================================================
 
@@ -156,28 +249,34 @@ Provider: openai
 Model: gpt-5.4-mini
 
 Answer:
-Here’s a simple Python function that removes duplicates from a list while preserving the original order:
+Here’s a simple Java function that removes duplicates from a `List` while preserving the original order:
 
-```python
-def remove_duplicates(lst):
-    seen = set()
-    result = []
-    for item in lst:
-        if item not in seen:
-            seen.add(item)
-            result.append(item)
-    return result
+```java
+import java.util.*;
+
+public class ListUtils {
+    public static <T> List<T> removeDuplicates(List<T> list) {
+        return new ArrayList<>(new LinkedHashSet<>(list));
+    }
+
+    public static void main(String[] args) {
+        List<Integer> nums = Arrays.asList(1, 2, 2, 3, 1, 4);
+        List<Integer> uniqueNums = removeDuplicates(nums);
+
+        System.out.println(uniqueNums); // [1, 2, 3, 4]
+    }
+}
 ```
 
-Example:
+### How it works
+- `LinkedHashSet` removes duplicates automatically.
+- It also keeps insertion order.
+- The result is converted back into a `List`.
 
-```python
-numbers = [1, 2, 2, 3, 4, 4, 5]
-print(remove_duplicates(numbers))
-# Output: [1, 2, 3, 4, 5]
-```
-
-If you want, I can also show a shorter version or one that works for unhashable items like dictionaries.
+If you want, I can also show:
+- a version that works **in place**
+- a version using **streams**
+- a version for **custom objects** with `equals()` / `hashCode()`
 
 ======================================================================
 

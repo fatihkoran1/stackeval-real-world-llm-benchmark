@@ -14,7 +14,7 @@ anthropic_client = Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
 openrouter_api_key = os.getenv("OPENROUTER_API_KEY")
 
 # One question for all models
-question = "Write a function in Python that removes duplicates from a list."
+question = "Write a function in Java that removes duplicates from a list."
 
 # Model list
 models = [
