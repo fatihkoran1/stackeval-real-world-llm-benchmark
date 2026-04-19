@@ -16,7 +16,7 @@ openrouter_api_key = os.getenv("OPENROUTER_API_KEY")
 # 🔥 PROMPT BUILDER 
 def build_prompt(user_question):
     return f"""
-You are answering a real Stack Overflow style C programming question.
+You are answering a real Stack Overflow style programming question.
 
 {user_question}
 
@@ -34,23 +34,30 @@ Provide one clear fix and corrected code.
 # ONLY CHANGE THIS PART
 raw_question = """
 Question:
-Why is my string not changing after passing it to a function in C?
+I have a list of objects, and I want to sort them based on one of their attributes.
 
 Code:
-#include <stdio.h>
+class Person:
+def __init__(self, name, age):
+self.name = name
+self.age = age
 
-void changeString(char str[]) {
-    str = "Hello";
-}
+people = [
+Person("Alice", 30),
+Person("Bob", 25),
+Person("Charlie", 35)
+]
 
-int main() {
-    char str[] = "World";
-    changeString(str);
-    printf("%s", str);
-    return 0;
-}
+# sort by age here
 
+for p in people:
+print(p.name, p.age)
+
+How can I sort this list of objects by age?
 """
+
+
+
 
 question = build_prompt(raw_question)
 
@@ -63,7 +70,6 @@ models = [
 ]
 
 json_filename = "all_model_results.json"
-txt_filename = "all_model_results_readable.txt"
 
 results = []
 
@@ -139,16 +145,6 @@ existing_results.extend(results)
 with open(json_filename, "w", encoding="utf-8") as f:
     json.dump(existing_results, f, indent=4, ensure_ascii=False)
 
-# TXT: append 
-with open(txt_filename, "a", encoding="utf-8") as f:
-    f.write(f"\nQuestion:\n{raw_question.strip()}\n\n")
-
-    for r in results:
-        f.write(f"===== {r['label']} =====\n")
-        f.write(f"Model: {r['model']}\n\n")
-        f.write(r["answer"])
-        f.write("\n\n" + "=" * 70 + "\n\n")
 
 print("\nSaved / updated files:")
 print(f"- {json_filename}")
-print(f"- {txt_filename}")
