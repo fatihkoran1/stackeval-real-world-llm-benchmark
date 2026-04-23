@@ -1,0 +1,688 @@
+StackEval Question Collection ToDo List
+
+🐍 PYTHON (10)
+
+Easy
+Python remove duplicates from list
+"""
+Question:
+I have a list with duplicate values, and I want to remove the duplicates.
+
+Code:
+my_list = [1, 2, 2, 3, 4, 4, 5]
+
+# remove duplicates here
+
+print(my_list)
+
+What is the best way to remove duplicate values from this list?
+"""
+Python loop modify list values
+"""
+Question:
+I am trying to modify the values of a list while looping through it, but it does not work as expected.
+
+Code:
+numbers = [1, 2, 3, 4]
+
+for n in numbers:
+n = n * 2
+
+print(numbers)
+
+Why are the values in the list not updated, and how can I fix this?
+"""
+
+Medium
+Python dictionary key not found
+"""
+Question:
+I am trying to access a value from a dictionary, but I get a KeyError.
+
+Code:
+data = {"name": "John", "age": 25}
+
+print(data["email"])
+
+Why do I get a KeyError, and how can I safely access dictionary keys that might not exist?
+"""
+Python sort list of objects by attribute
+"""
+Question:
+I have a list of objects, and I want to sort them based on one of their attributes.
+
+Code:
+class Person:
+def __init__(self, name, age):
+self.name = name
+self.age = age
+
+people = [
+Person("Alice", 30),
+Person("Bob", 25),
+Person("Charlie", 35)
+]
+
+# sort by age here
+
+for p in people:
+print(p.name, p.age)
+
+How can I sort this list of objects by age?
+"""
+Python string not changing in function
+"""
+Question:
+I am trying to modify a string inside a function, but the change is not reflected outside the function.
+
+Code:
+def change_string(s):
+s = s.upper()
+
+text = "hello"
+change_string(text)
+
+print(text)
+
+Why is the original string not changed, and how can I fix this?
+"""
+Python – Dictionary modify during iteration
+"""
+Question:
+I am trying to remove items from a dictionary while looping over it, but I get an error.
+
+Code:
+data = {"a": 1, "b": 2, "c": 3}
+
+for key in data:
+if data[key] > 1:
+del data[key]
+
+print(data)
+
+Why does this cause an error, and how can I fix it?
+"""
+
+Hard
+Python Shallow vs Deep Copy
+"""
+Question:
+I copied a list, but when I modify the copy, the original list also changes.
+
+Code:
+original = [[1, 2], [3, 4]]
+copied = original.copy()
+
+copied[0][0] = 99
+
+print(original)
+print(copied)
+
+Why does changing the copied list also affect the original, and how can I fix this?
+"""
+Python recursion maximum recursion depth
+"""
+Question:
+I am using recursion, but my program crashes with a maximum recursion depth error.
+
+Code:
+def count_down(n):
+print(n)
+count_down(n - 1)
+
+count_down(5)
+
+Why does this cause a recursion depth error, and how can I fix it?
+"""
+ Python mutable default argument bug
+"""
+Question:
+I am using a list as a default argument in a function, but the list keeps growing every time I call the function.
+
+Code:
+def add_item(item, my_list=[]):
+my_list.append(item)
+return my_list
+
+print(add_item(1))
+print(add_item(2))
+print(add_item(3))
+
+Why does the list keep growing between function calls, and how can I fix this?
+"""
+
+Framework
+ Flask route returns 404
+"""
+Question:
+I defined a route in my Flask app, but when I open it in the browser, I still get a 404 error.
+
+Code:
+from flask import Flask
+
+app = Flask(__name__)
+
+@app.route("/home")
+def home():
+return "Hello"
+
+if __name__ == "__main__":
+app.run()
+
+Why can this still return a 404 error, and how can I fix it?
+"""
+
+
+⚙️ C# (10)
+
+Easy
+ C# variable not updating in method
+"""
+Question:
+I am trying to change a variable inside a method, but the value does not change outside the method.
+
+Code:
+using System;
+
+class Program
+{
+static void ChangeValue(int x)
+{
+x = x + 5;
+}
+
+static void Main()
+{
+int number = 10;
+ChangeValue(number);
+Console.WriteLine(number);
+}
+}
+
+Why is the value of 'number' not updated, and how can I fix this?
+"""
+ C# print list to console
+"""
+Question:
+I have a list of values, and I want to print all items to the console.
+
+Code:
+using System;
+using System.Collections.Generic;
+
+class Program
+{
+static void Main()
+{
+List<int> numbers = new List<int> { 1, 2, 3, 4 };
+
+Console.WriteLine(numbers);
+}
+}
+
+How can I print each item in the list to the console?
+"""
+ C# string not changing after method
+"""
+Question:
+I am trying to change a string inside a method, but the value does not change outside the method.
+
+Code:
+using System;
+
+class Program
+{
+static void ChangeString(string text)
+{
+text = text.ToUpper();
+}
+
+static void Main()
+{
+string message = "hello";
+ChangeString(message);
+Console.WriteLine(message);
+}
+}
+
+Why is the string not updated, and how can I fix this?
+"""
+ C# console input list
+"""
+Question:
+I want to take input from the console and store multiple values in a list.
+
+Code:
+using System;
+using System.Collections.Generic;
+
+class Program
+{
+static void Main()
+{
+List<string> items = new List<string>();
+
+for (int i = 0; i < 3; i++)
+{
+string input = Console.ReadLine();
+// add input to list
+}
+
+Console.WriteLine(items.Count);
+}
+}
+
+How can I store the user input into the list correctly?
+"""
+
+
+Medium
+ C# object null reference exception
+"""
+Question:
+I am getting a NullReferenceException when trying to access an object.
+
+Code:
+using System;
+
+class Person
+{
+public string Name;
+}
+
+class Program
+{
+static void Main()
+{
+Person p = null;
+Console.WriteLine(p.Name);
+}
+}
+
+Why does this cause a NullReferenceException, and how can I fix it?
+"""
+ C# list vs array difference bug
+"""
+Question:
+I am trying to add a new item to an array, but it does not work.
+
+Code:
+using System;
+
+class Program
+{
+static void Main()
+{
+int[] numbers = new int[] { 1, 2, 3 };
+
+numbers[3] = 4;
+
+Console.WriteLine(numbers.Length);
+}
+}
+
+Why does this not work as expected, and what should I use instead?
+"""
+ C# loop through list of objects
+"""
+Question:
+I have a list of objects, and I want to loop through them to access their values.
+
+Code:
+using System;
+using System.Collections.Generic;
+
+class Person
+{
+public string Name;
+}
+
+class Program
+{
+static void Main()
+{
+List<Person> people = new List<Person>
+{
+new Person { Name = "Alice" },
+new Person { Name = "Bob" }
+};
+
+foreach (var p in people)
+{
+Console.WriteLine(p);
+}
+}
+}
+
+How can I correctly access and print the Name of each object in the list?
+"""
+
+Hard
+ C# reference vs value type issue
+"""
+Question:
+I am trying to modify an object inside a method, but the changes are not reflected as expected.
+
+Code:
+using System;
+
+class Person
+{
+public int Age;
+}
+
+class Program
+{
+static void UpdateAge(Person p)
+{
+p = new Person();
+p.Age = 30;
+}
+
+static void Main()
+{
+Person person = new Person();
+person.Age = 20;
+
+UpdateAge(person);
+
+Console.WriteLine(person.Age);
+}
+}
+
+Why does the age not change, and how can I fix this?
+"""
+ C# LINQ query returns empty
+"""
+Question:
+I am using a LINQ query, but it returns no results even though I expect some data.
+
+Code:
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+class Program
+{
+static void Main()
+{
+List<int> numbers = new List<int> { 1, 2, 3, 4 };
+
+var result = numbers.Where(n => n > 10);
+
+Console.WriteLine(result.First());
+}
+}
+
+Why does this cause an error, and how can I handle empty results correctly?
+"""
+
+Framework
+ ASP.NET API not returning data
+"""
+Question:
+My ASP.NET API method returns data, but I do not see the expected result in the response.
+
+Code:
+using Microsoft.AspNetCore.Mvc;
+
+[ApiController]
+[Route("api/[controller]")]
+public class UserController : ControllerBase
+{
+[HttpGet]
+public IActionResult GetUser()
+{
+string name = "Kenan";
+return Ok(name);
+}
+}
+
+Why might the API response still seem empty, and how can I fix it?
+"""
+
+
+☕ JAVA (10)
+
+Easy
+ Java array not updating after method
+raw_question = """
+Question:
+I am trying to update an array inside a method, but the change is not reflected outside the method.
+
+Code:
+public class Main {
+    static void updateArray(int[] arr) {
+        arr = new int[]{1, 2, 3};
+    }
+
+    public static void main(String[] args) {
+        int[] numbers = {5, 6, 7};
+        updateArray(numbers);
+
+        for (int n : numbers) {
+            System.out.print(n + " ");
+        }
+    }
+}
+
+Why is the original array not updated, and how can I fix this?
+"""
+Java string not changing in method
+"""
+Question:
+I am trying to modify a string, but the value does not change as expected.
+
+Code:
+public class Main {
+public static void main(String[] args) {
+String text = "hello";
+
+text.replace("h", "H");
+
+System.out.println(text);
+}
+}
+
+Why is the string not updated, and how can I fix this?
+"""
+ Java loop through ArrayList
+"""
+Question:
+I have an ArrayList, and I want to loop through its elements to print them.
+
+Code:
+import java.util.ArrayList;
+
+public class Main {
+public static void main(String[] args) {
+ArrayList<String> items = new ArrayList<>();
+items.add("A");
+items.add("B");
+items.add("C");
+
+System.out.println(items);
+}
+}
+
+How can I loop through the ArrayList and print each item separately?
+"""
+
+Medium
+
+Java remove while iterating
+"""
+Question:
+I am trying to remove elements from a list while iterating over it, but it causes an error.
+
+Code:
+import java.util.ArrayList;
+
+public class Main {
+public static void main(String[] args) {
+ArrayList<Integer> numbers = new ArrayList<>();
+numbers.add(1);
+numbers.add(2);
+numbers.add(3);
+numbers.add(4);
+
+for (int n : numbers) {
+if (n > 2) {
+numbers.remove(n);
+}
+}
+
+System.out.println(numbers);
+}
+}
+
+Why does this cause an error, and how can I fix it?
+"""
+ Java object null pointer exception
+"""
+Question:
+I am getting a NullPointerException when trying to access an object.
+
+Code:
+class Person {
+String name;
+}
+
+public class Main {
+public static void main(String[] args) {
+Person p = null;
+
+System.out.println(p.name);
+}
+}
+
+Why does this cause a NullPointerException, and how can I fix it?
+"""
+ Java sort ArrayList of objects
+"""
+Question:
+I have an ArrayList of objects, and I want to sort them based on one of their attributes.
+
+Code:
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+
+class Person {
+String name;
+int age;
+
+Person(String name, int age) {
+this.name = name;
+this.age = age;
+}
+}
+
+public class Main {
+public static void main(String[] args) {
+ArrayList<Person> people = new ArrayList<>();
+people.add(new Person("Alice", 30));
+people.add(new Person("Bob", 25));
+people.add(new Person("Charlie", 35));
+
+// sort by age here
+
+for (Person p : people) {
+System.out.println(p.name + " " + p.age);
+}
+}
+}
+
+How can I sort this list by age?
+"""
+ Java array vs ArrayList difference
+"""
+Question:
+I am trying to add a new element to an array, but it does not work as expected.
+
+Code:
+public class Main {
+public static void main(String[] args) {
+int[] numbers = {1, 2, 3};
+
+numbers[3] = 4;
+
+System.out.println(numbers.length);
+}
+}
+
+Why does this not work, and what should I use instead if I want to add elements dynamically?
+"""
+
+Hard
+ Java recursion StackOverflowError
+"""
+Question:
+I am using recursion, but my program crashes with a StackOverflowError.
+
+Code:
+public class Main {
+static void countDown(int n) {
+System.out.println(n);
+countDown(n - 1);
+}
+
+public static void main(String[] args) {
+countDown(5);
+}
+}
+
+Why does this cause a StackOverflowError, and how can I fix it?
+"""
+ Java static variable shared bug
+"""
+Question:
+I am using a static variable in Java, and its value is shared in a way I did not expect.
+
+Code:
+class Counter {
+static int count = 0;
+
+Counter() {
+count++;
+}
+}
+
+public class Main {
+public static void main(String[] args) {
+Counter a = new Counter();
+Counter b = new Counter();
+
+System.out.println(a.count);
+System.out.println(b.count);
+}
+}
+
+Why do both objects seem to share the same value, and how can I fix this if I want each object to have its own count?
+"""
+
+Framework
+ Spring Boot endpoint not working
+"""
+Question:
+After upgrading my Spring Boot application, one of my REST endpoints returns 404 when I call it with a trailing slash.
+
+Code:
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import java.util.List;
+
+@RestController
+@RequestMapping("/api/v1")
+public class TodosController {
+
+@GetMapping("/locations")
+public List<Integer> findAllCoordinates() {
+return List.of(10, 15);
+}
+}
+
+Why can '/api/v1/locations/' return 404 while '/api/v1/locations' works, and how can I fix it?
+"""
+
